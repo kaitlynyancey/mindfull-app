@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import JournalContext from '../JournalContext';
 import { Link } from 'react-router-dom';
 
-function handleClickDelete(entryId, callback) {
-    callback(entryId)
-}
 
 
 class JournalEntry extends Component {
     static contextType = JournalContext
+    static defaultProps = {
+        onDeleteNote: () => { },
+    }
+
+    handleClickDelete(entryId, callback) {
+        callback(entryId)
+        this.props.onDeleteEntry(entryId)
+    }
 
     render() {
         return (
@@ -23,9 +28,12 @@ class JournalEntry extends Component {
                         })}</p>
                         <p>Entry: {this.props.notes}</p>
                             <Link to={`/edit/${this.props.id}`}>
-                                Edit
+                                Click to Edit
                             </Link>
-                        <button onClick={() => { handleClickDelete(this.props.id, context.deleteEntry) }}>
+                        <br></br>
+                        <button 
+                            onClick={() => { this.handleClickDelete(this.props.id, context.deleteEntry) }}
+                            className="delete-button">
                             Delete
                         </button>
                     </li>

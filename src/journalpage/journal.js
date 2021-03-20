@@ -3,45 +3,93 @@ import JournalContext from '../JournalContext';
 import JournalEntry from './journal-entry';
 
 class JournalPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            entries: [],
+            month: 'all',
+            currentUser: 'ADMIN'
+        }
+    }
+    
     static contextType = JournalContext;
 
+    monthFilter = () => {
+        console.log(this.state.month)
+        console.log(this.state.entries)
+        if(this.state.month !== 'all') {
+            console.log('changed')
+            const filteredEntries = this.state.entries.filter(entry =>
+                entry.month === this.state.month
+              )
+              this.setState({
+                  entries: filteredEntries
+              })
+        }
+        console.log(this.state.entries)
+    }
+
+    handleChange = e => {
+        const month = e.target.value
+        var filteredEntries = this.context.entries.filter(entry =>
+            entry.userId === this.context.currentUser)
+        if(month !== 'all') {
+            filteredEntries = filteredEntries.filter(entry =>
+                entry.month === month
+              )
+        }
+        this.setState({
+            entries: filteredEntries
+        })
+    }
+
+    handleDeleteEntry = entryId => {
+        const newEntries = this.state.entries.filter(entry =>
+            entry.id !== entryId
+          )
+          this.setState({
+            entries: newEntries
+          })
+    }
+    componentDidMount() {
+        const userEntries = this.context.entries.filter(entry =>
+            entry.userId === this.context.currentUser) 
+        this.setState({
+            entries: userEntries
+        })
+    }
+
     render() {
-        const entries = this.context.entries
+        const entries = this.state.entries
         return (
             <div className="logpage">
-                <section>
+                <section className="center">
                     <h2>Journal Entries</h2>
                     <br></br>
-                    <label htmlFor="year">Year: </label>
-                    <select name="year" id="year" required>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
-                    </select>
                     <label htmlFor="month"> Month: </label>
-                    <select name="month" id="month" required>
-                        <option value="jan">Jan</option>
-                        <option value="feb">Feb</option>
-                        <option value="mar">Mar</option>
-                        <option value="apr">Apr</option>
-                        <option value="may">May</option>
-                        <option value="jun">Jun</option>
-                        <option value="jul">Jul</option>
-                        <option value="aug">Aug</option>
-                        <option value="sep">Sep</option>
-                        <option value="oct">Oct</option>
-                        <option value="nov">Nov</option>
-                        <option value="dec">Dec</option>
+                    <select name="month" id="month" onChange={this.handleChange} value={this.state.value}>
+                        <option value="all">All</option>
+                        <option value="January">Jan</option>
+                        <option value="February">Feb</option>
+                        <option value="March">Mar</option>
+                        <option value="April">Apr</option>
+                        <option value="May">May</option>
+                        <option value="June">Jun</option>
+                        <option value="July">Jul</option>
+                        <option value="August">Aug</option>
+                        <option value="September">Sep</option>
+                        <option value="October">Oct</option>
+                        <option value="November">Nov</option>
+                        <option value="December">Dec</option>
                     </select>
                 </section>
                 <section>
                     <ul className="entry-list">
-                        {entries.map(entry => 
+                        {entries.map(entry =>
                             <JournalEntry
                                 id={entry.id}
-                                {...entry} 
+                                {...entry}
+                                onDeleteEntry={this.handleDeleteEntry}
                             />)}
                     </ul>
                 </section>

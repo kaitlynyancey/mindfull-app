@@ -11,6 +11,7 @@ class EntryPage extends Component {
         const newEntry = {
             id: uuid(),
             date: new Date().toLocaleDateString(),
+            month: new Date().toLocaleString('default', { month: 'long' }),
             mood: e.target.mood.value,
             stressLevel: e.target.stressLevel.value,
             gratitudes: [e.target.gratitude1.value, e.target.gratitude2.value, e.target.gratitude3.value],
@@ -26,23 +27,23 @@ class EntryPage extends Component {
 
         return (
             <div className="entrypage">
-                <section>
+                <section className="center">
                     <h3>New Entry for {date}:</h3>
                 </section>
                 <form onSubmit={this.handleSubmit}>
                     <section>
                         <h3>Current Mood: </h3>
-                        <input type="radio" id="excited" name="mood" value="excited" required />
+                        <input type="radio" id="excited" name="mood" value="Excited" required />
                         <label htmlFor="Excited"> Excited</label><br></br>
-                        <input type="radio" id="happy" name="mood" value="happy" />
+                        <input type="radio" id="happy" name="mood" value="Happy" />
                         <label htmlFor="Happy"> Happy</label><br></br>
-                        <input type="radio" id="bored" name="mood" value="bored" />
+                        <input type="radio" id="bored" name="mood" value="Bored" />
                         <label htmlFor="Bored"> Bored</label><br></br>
-                        <input type="radio" id="sad" name="mood" value="sad" />
+                        <input type="radio" id="sad" name="mood" value="Sad" />
                         <label htmlFor="Sad"> Sad</label><br></br>
-                        <input type="radio" id="nervous" name="mood" value="nervous" />
+                        <input type="radio" id="nervous" name="mood" value="Nervous" />
                         <label htmlFor="Nervous"> Nervous</label><br></br>
-                        <input type="radio" id="angry" name="mood" value="angry" />
+                        <input type="radio" id="angry" name="mood" value="Angry" />
                         <label htmlFor="angry"> Angry</label>
                     </section>
                     <section>
@@ -75,7 +76,7 @@ class EntryPage extends Component {
                     <section>
                         <h3>Free Space:</h3>
                         <label htmlFor="notes">Write down your thoughts, feelings, revelations, things you did today, future plans, dreams, whatever you want!</label><br />
-                        <textarea name="notes" id="notes" rows="6" cols="50" required ></textarea>
+                        <textarea name="notes" id="notes" rows="10" required ></textarea>
                     </section>
                     <button type="submit">Submit</button>
                     <button type="reset">Reset</button>

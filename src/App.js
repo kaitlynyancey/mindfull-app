@@ -8,6 +8,7 @@ import Nav from './nav/nav';
 import DATA from './dummy-data';
 import JournalContext from './JournalContext';
 import EditPage from './editpage/edit';
+import LoginPage from './loginpage/login';
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class App extends Component {
     this.state = {
       entries: [],
       users: [],
-      currentUser: 'admin',
+      currentUser: 'ADMIN',
       error: null,
     }
   }
@@ -32,8 +33,7 @@ class App extends Component {
   }
 
   deleteEntry = entryId => {
-    console.log('delete')
-    const newEntries = this.state.entries.filter(entry => 
+    const newEntries = this.state.entries.filter(entry =>
       entry.id !== entryId
     )
     this.setState({
@@ -41,8 +41,22 @@ class App extends Component {
     })
   }
 
-  updateEntry = entryId => {
-    console.log('update')
+  updateEntry = updatedEntry => {
+    const updatedEntries = this.state.entries.map(entry =>
+      (entry.id !== updatedEntry.id) ? entry : updatedEntry)
+    this.setState({
+      entries: updatedEntries
+    })
+  }
+
+  updateCurrentUser = currentUser => {
+    this.setState({
+      currentUser: currentUser
+    })
+  }
+
+  addUser = newUser => {
+    this.state.users.push(newUser)
   }
 
   render() {
@@ -53,13 +67,18 @@ class App extends Component {
       addEntry: this.addEntry,
       deleteEntry: this.deleteEntry,
       updateEntry: this.updateEntry,
+      updateCurrentUser: this.updateCurrentUser,
+      addUser: this.addUser,
     }
     return (
       <BrowserRouter>
         <JournalContext.Provider value={contextValue}>
           <div className='App'>
             <header>
-              <section>
+              <div className="right">
+                <p>Hello, {this.state.currentUser}</p>
+              </div>
+              <section className="center">
                 <h1>mindFULL</h1>
               </section>
               <Nav />
@@ -84,6 +103,10 @@ class App extends Component {
               <Route
                 path='/edit/:entryId'
                 component={EditPage}
+              />
+              <Route
+                path='/login'
+                component={LoginPage}
               />
             </main>
             <footer>
