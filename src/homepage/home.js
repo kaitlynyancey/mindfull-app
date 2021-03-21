@@ -45,10 +45,6 @@ class HomePage extends Component {
                     <button onClick={() => this.props.history.push('/entry')}>Link to Daily Entry</button>
                     <button onClick={() => this.props.history.push('/journal')}>Link to Journal</button>
                 </section>
-                <section>
-                    <p><b>Quote of the day...</b></p>
-                    <p><i>"{this.state.quote}"</i> - {this.state.author}</p>
-                </section>
             </div>
         )
     }

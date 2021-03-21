@@ -21,12 +21,12 @@ class JournalEntry extends Component {
                 {(context) => (
                     <li className="entry" key={this.props.id}>
                         <h3>{this.props.date}</h3>
-                        <p>Mood: {this.props.mood}</p>
-                        <p>Stress Level: {this.props.stressLevel}</p>
-                        <p>Gratitudes: {this.props.gratitudes.map(i => {
+                        <p><b>Mood: </b> {this.props.mood}</p>
+                        <p><b>Stress Level: </b> {this.props.stressLevel}</p>
+                        <p><b>Gratitudes: </b> {this.props.gratitudes.map(i => {
                             return (i + ', ')
                         })}</p>
-                        <p>Entry: {this.props.notes}</p>
+                        <p><b>Entry: </b> {this.props.notes}</p>
                             <Link to={`/edit/${this.props.id}`}>
                                 Click to Edit
                             </Link>

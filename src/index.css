@@ -47,7 +47,7 @@ h1,h2,h3,p,a,button,label{
 }
 
 h1{
-  font-size: 60px;
+  font-size: 48px;
 }
 
 li{
@@ -119,13 +119,13 @@ textarea{
 
 .wrapper{
   margin: auto;
-  width: 80%;
+  width: 90%;
 }
 
 .entry{
   border: 1pt solid black;
   padding: 20px 40px 0px 40px;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   margin-bottom: 40px;
   background: rgb(255, 255, 255, 0.4);
@@ -141,5 +141,8 @@ textarea{
   }
   .entry{
     width: 50%
+  }
+  h1{
+    font-size: 60px;
   }
 }
