@@ -90,7 +90,7 @@ class LoginPage extends Component {
                 <form onSubmit={this.handleLogin}>
                     <section>
                         <label htmlFor="username">Username: </label>
-                        <input type="text" id="username" name="username" defaultValue="enter your username" required />
+                        <input type="text" id="username" name="username" required />
                         <br></br>
                         <br></br>
                         <label htmlFor="pw">Password: </label>
@@ -104,7 +104,7 @@ class LoginPage extends Component {
                 <form onSubmit={this.handleRegister}>
                     <section>
                         <label htmlFor="newUsername"> Username: </label>
-                        <input type="text" id="newUsername" name="newUsername" defaultValue="enter your username"required />
+                        <input type="text" id="newUsername" name="newUsername" required />
                         <br></br>
                         <br></br>
                         <label htmlFor="newPw">Password: </label>

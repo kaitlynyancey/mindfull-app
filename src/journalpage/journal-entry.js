@@ -12,7 +12,7 @@ class JournalEntry extends Component {
     }
 
     handleClickDelete(entryId, callback) {
-        fetch(`${API_BASE_URL}/${entryId}`, {
+        fetch(`${API_BASE_URL}/entries/${entryId}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',
