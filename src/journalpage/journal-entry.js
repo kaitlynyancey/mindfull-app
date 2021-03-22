@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import JournalContext from '../JournalContext';
 import { Link } from 'react-router-dom';
+const { API_BASE_URL } = require('../config')
 
 
 
@@ -11,7 +12,7 @@ class JournalEntry extends Component {
     }
 
     handleClickDelete(entryId, callback) {
-        fetch(`http://localhost:8000/api/entries/${entryId}`, {
+        fetch(`${API_BASE_URL}/${entryId}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',

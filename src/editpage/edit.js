@@ -64,7 +64,7 @@ class EditPage extends Component {
             notes: e.target.notes.value,
             userid: this.state.entry.userid,
         }
-        fetch(`http://localhost:8000/api/entries/${this.state.entry.id}`, {
+        fetch(`${API_BASE_URL}/entries/${this.state.entry.id}`, {
             method: 'PATCH',
             body: JSON.stringify(updatedEntry),
             headers: {

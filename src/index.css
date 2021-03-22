@@ -60,9 +60,6 @@ hr{
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0),#1c3e5c, rgba(0, 0, 0, 0));
 }
 
-a{
-  text-decoration: underline;
-}
 
 button{
   background-color: rgba(150, 99, 163);
@@ -77,8 +74,23 @@ button{
   margin: 20px 40px;
 }
 
+.link {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 button:hover{
   background-color: rgb(94, 64, 102);
+}
+
+.link:hover{
+  color:salmon;
+  background-color: rgb(170, 147, 147, 0);
 }
 
 .center{

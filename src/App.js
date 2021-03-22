@@ -157,7 +157,7 @@ class App extends Component {
                 <Link to='/login'>
                   Login
                 </Link><span> | </span>
-                <a onClick={() => this.handleLogout()}>Logout</a>
+                <button className="link" type="button" onClick={() => this.handleLogout()}>Logout</button>
               </div>
               <section className="center">
                 <h1>mindFULL</h1>

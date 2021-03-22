@@ -12,15 +12,9 @@ class LoginPage extends Component {
 
     static contextType = JournalContext
 
-    componentDidMount() {
-
-
-    }
-
     handleLogin = e => {
         e.preventDefault()
         const username = e.target.username.value
-        const password = e.target.pw.value
         const userCheck = this.context.users.filter(user =>
             user.username === username)
         
@@ -30,6 +24,7 @@ class LoginPage extends Component {
         }
         
         //check to see if password matches
+        const password = e.target.pw.value
         if (userCheck[0].pw !== password) {
             alert('Incorrect password entered! Please try again.')
         }
@@ -99,7 +94,7 @@ class LoginPage extends Component {
                         <br></br>
                         <br></br>
                         <label htmlFor="pw">Password: </label>
-                        <input type="password" id="pw" name="pw" required />
+                        <input type="text" id="pw" name="pw" required />
                     </section>
                     <button type="submit">Login</button>
                 </form>
@@ -113,7 +108,7 @@ class LoginPage extends Component {
                         <br></br>
                         <br></br>
                         <label htmlFor="newPw">Password: </label>
-                        <input type="password" id="newPw" name="newPw" required />
+                        <input type="text" id="newPw" name="newPw" required />
                     </section>
                     <button type="submit">Sign Up</button>
                 </form>
