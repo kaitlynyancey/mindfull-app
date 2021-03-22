@@ -8,7 +8,8 @@ class HomePage extends Component {
     }
 
     componentDidMount() {
-        fetch('http://quotes.rest/qod.json?category=inspire')
+        const proxy = ` https://murmuring-scrubland-19112.herokuapp.com/`
+        fetch(proxy + 'https://zenquotes.io/api/today')
             .then(res => {
                 if (!res.ok) {
                     // get the error message from the response,
@@ -21,8 +22,8 @@ class HomePage extends Component {
             })
             .then(data => {
                 this.setState({
-                    quote: data.contents.quotes[0].quote,
-                    author: data.contents.quotes[0].author,
+                    quote: data[0].q,
+                    author: data[0].a,
                 })
             })
             .catch(error => {
@@ -44,6 +45,11 @@ class HomePage extends Component {
                 <section>
                     <button onClick={() => this.props.history.push('/entry')}>Link to Daily Entry</button>
                     <button onClick={() => this.props.history.push('/journal')}>Link to Journal</button>
+                </section>
+                <section>
+                    <p><b>Quote of the day...</b></p>
+                    <p><i>{this.state.quote}</i> - {this.state.author}</p>
+                    <p><small>Inspirational quotes provided by <a href="https://zenquotes.io/" target="_blank" rel="noreferrer" >ZenQuotes API</a></small></p>
                 </section>
             </div>
         )

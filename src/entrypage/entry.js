@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import JournalContext from '../JournalContext';
+const { API_BASE_URL } = require('../config')
 
-const { v4: uuid } = require('uuid')
 
 class EntryPage extends Component {
     static contextType = JournalContext
@@ -9,17 +9,39 @@ class EntryPage extends Component {
     handleSubmit = e => {
         e.preventDefault()
         const newEntry = {
-            id: uuid(),
-            date: new Date().toLocaleDateString(),
-            month: new Date().toLocaleString('default', { month: 'long' }),
+            date_created: new Date().toLocaleDateString(),
+            month_created: new Date().toLocaleString('default', { month: 'long' }),
             mood: e.target.mood.value,
-            stressLevel: e.target.stressLevel.value,
-            gratitudes: [e.target.gratitude1.value, e.target.gratitude2.value, e.target.gratitude3.value],
+            stress_level: e.target.stressLevel.value,
+            gratitude1: e.target.gratitude1.value,
+            gratitude2: e.target.gratitude2.value, 
+            gratitude3: e.target.gratitude3.value,
             notes: e.target.notes.value,
-            userId: this.context.currentUser,
+            userid: this.context.currentUser,
         }
-        this.context.addEntry(newEntry)
-        this.props.history.push('/journal')
+        fetch(`${API_BASE_URL}/entries`, {
+            method: 'POST',
+            body: JSON.stringify(newEntry),
+            headers: {
+              'content-type': 'application/json',
+              'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
+            }
+          })
+            .then(res => {
+              if (!res.ok) {
+                return res.json().then(error => {
+                  throw error
+                })
+              }
+              return res.json()
+            })
+            .then(response => {
+                this.context.addEntry(response)
+                this.props.history.push('/journal')
+            })
+            .catch(error => {
+              this.setState({ error })
+            })
     }
 
     render() {

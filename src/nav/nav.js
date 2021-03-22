@@ -16,9 +16,6 @@ export default function Nav() {
             <Link to='/journal'>
                 Journal
             </Link>
-            <Link to='/login'>
-                Login / Sign Up
-            </Link>
         </nav>
     )
 }

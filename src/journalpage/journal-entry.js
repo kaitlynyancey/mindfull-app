@@ -7,12 +7,32 @@ import { Link } from 'react-router-dom';
 class JournalEntry extends Component {
     static contextType = JournalContext
     static defaultProps = {
-        onDeleteNote: () => { },
+        onDeleteEntry: () => { },
     }
 
     handleClickDelete(entryId, callback) {
-        callback(entryId)
-        this.props.onDeleteEntry(entryId)
+        fetch(`http://localhost:8000/api/entries/${entryId}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
+            }
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error
+                    })
+                }
+            })
+            .then(response => {
+                this.props.onDeleteEntry(entryId)
+                callback(entryId)
+                
+            })
+            .catch(error => {
+                this.setState({ error })
+            })
     }
 
     render() {
@@ -20,18 +40,16 @@ class JournalEntry extends Component {
             <JournalContext.Consumer>
                 {(context) => (
                     <li className="entry" key={this.props.id}>
-                        <h3>{this.props.date}</h3>
+                        <h3>{this.props.date_created}</h3>
                         <p><b>Mood: </b> {this.props.mood}</p>
-                        <p><b>Stress Level: </b> {this.props.stressLevel}</p>
-                        <p><b>Gratitudes: </b> {this.props.gratitudes.map(i => {
-                            return (i + ', ')
-                        })}</p>
+                        <p><b>Stress Level: </b> {this.props.stress_level}</p>
+                        <p><b>Gratitudes: </b> {this.props.gratitude1}, {this.props.gratitude2}, {this.props.gratitude3}</p>
                         <p><b>Entry: </b> {this.props.notes}</p>
-                            <Link to={`/edit/${this.props.id}`}>
-                                Click to Edit
+                        <Link to={`/edit/${this.props.id}`}>
+                            Click to Edit
                             </Link>
                         <br></br>
-                        <button 
+                        <button
                             onClick={() => { this.handleClickDelete(this.props.id, context.deleteEntry) }}
                             className="delete-button">
                             Delete

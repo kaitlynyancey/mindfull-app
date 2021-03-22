@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import HomePage from './homepage/home';
 import AboutPage from './aboutpage/about';
 import EntryPage from './entrypage/entry';
 import JournalPage from './journalpage/journal';
 import Nav from './nav/nav';
-import DATA from './dummy-data';
 import JournalContext from './JournalContext';
 import EditPage from './editpage/edit';
 import LoginPage from './loginpage/login';
+const { API_BASE_URL } = require('./config')
 
 class App extends Component {
   constructor(props) {
@@ -16,16 +17,84 @@ class App extends Component {
     this.state = {
       entries: [],
       users: [],
-      currentUser: 'ADMIN',
+      currentUser: '',
       error: null,
+      currentUsername: ''
     }
   }
 
   componentDidMount() {
-    this.setState({
-      entries: DATA.entries,
-      users: DATA.users,
+    //get entries from database
+    fetch(`${API_BASE_URL}/entries`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`,
+      }
     })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            throw error
+          })
+        }
+        return res.json()
+      })
+      .then(response => {
+        this.setState({
+          entries: response
+        })
+      })
+      .catch(error => {
+        this.setState({ error })
+      })
+    //get users from database
+    fetch(`${API_BASE_URL}/users`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            throw error
+          })
+        }
+        return res.json()
+      })
+      .then(response => {
+        this.setState({
+          users: response
+        })
+      })
+      .catch(error => {
+        this.setState({ error })
+      })
+
+    //set the current user to default test user
+    fetch(`${API_BASE_URL}/users/1`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`,
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            throw error
+          })
+        }
+        return res.json()
+      })
+      .then(response => {
+        this.updateCurrentUser(response)
+      })
+      .catch(error => {
+        this.setState({ error })
+      })
   }
 
   addEntry = newEntry => {
@@ -51,7 +120,15 @@ class App extends Component {
 
   updateCurrentUser = currentUser => {
     this.setState({
-      currentUser: currentUser
+      currentUser: currentUser.id,
+      currentUsername: currentUser.username,
+    })
+  }
+
+  handleLogout = () => {
+    this.setState({
+      currentUser: 1,
+      currentUsername: 'Test User',
     })
   }
 
@@ -76,7 +153,11 @@ class App extends Component {
           <div className='App'>
             <header>
               <div className="right">
-                <p>Hello, {this.state.currentUser}</p>
+                <p>Hello, {this.state.currentUsername}</p>
+                <Link to='/login'>
+                  Login
+                </Link><span> | </span>
+                <a onClick={() => this.handleLogout()}>Logout</a>
               </div>
               <section className="center">
                 <h1>mindFULL</h1>

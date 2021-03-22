@@ -60,6 +60,10 @@ hr{
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0),#1c3e5c, rgba(0, 0, 0, 0));
 }
 
+a{
+  text-decoration: underline;
+}
+
 button{
   background-color: rgba(150, 99, 163);
   border: 1pt solid black;

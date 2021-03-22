@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import JournalContext from '../JournalContext';
 import JournalEntry from './journal-entry';
+const { API_BASE_URL } = require('../config')
 
 class JournalPage extends Component {
     constructor(props) {
@@ -14,28 +15,14 @@ class JournalPage extends Component {
     
     static contextType = JournalContext;
 
-    monthFilter = () => {
-        console.log(this.state.month)
-        console.log(this.state.entries)
-        if(this.state.month !== 'all') {
-            console.log('changed')
-            const filteredEntries = this.state.entries.filter(entry =>
-                entry.month === this.state.month
-              )
-              this.setState({
-                  entries: filteredEntries
-              })
-        }
-        console.log(this.state.entries)
-    }
 
     handleChange = e => {
         const month = e.target.value
         var filteredEntries = this.context.entries.filter(entry =>
-            entry.userId === this.context.currentUser)
+            entry.userid === this.context.currentUser)
         if(month !== 'all') {
             filteredEntries = filteredEntries.filter(entry =>
-                entry.month === month
+                entry.month_created === month
               )
         }
         this.setState({
@@ -52,11 +39,36 @@ class JournalPage extends Component {
           })
     }
     componentDidMount() {
-        const userEntries = this.context.entries.filter(entry =>
-            entry.userId === this.context.currentUser) 
-        this.setState({
-            entries: userEntries
-        })
+        fetch(`${API_BASE_URL}/entries`, {
+            method: 'GET',
+            headers: {
+              'content-type': 'application/json',
+              'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`,
+            }
+          })
+          .then(res => {
+            if (!res.ok) {
+              return res.json().then(error => {
+                throw error
+              })
+            }
+            return res.json()
+          })
+          .then(response => {
+            const userEntries = response.filter(entry => 
+                entry.userid === this.context.currentUser)
+            this.setState({
+              entries: userEntries
+            })
+          })
+          .catch(error => {
+            this.setState({ error })
+          })
+        // const userEntries = this.context.entries.filter(entry =>
+        //     entry.userid === this.context.currentUser) 
+        // this.setState({
+        //     entries: userEntries
+        // })
     }
 
     render() {
