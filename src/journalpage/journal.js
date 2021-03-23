@@ -56,13 +56,13 @@ class JournalPage extends Component {
         const dates = newEntries.map(entry =>
             entry.date_created)
         const moods = newEntries.map(entry =>
-                entry.mood)
+            entry.mood)
 
         this.setState({
             entries: newEntries,
             stressLevels: stressLevels,
             dates: dates,
-            moods:moods,
+            moods: moods,
         })
     }
     componentDidMount() {
@@ -102,20 +102,38 @@ class JournalPage extends Component {
             .catch(error => {
                 this.setState({ error })
             })
-        // const userEntries = this.context.entries.filter(entry =>
-        //     entry.userid === this.context.currentUser) 
-        // this.setState({
-        //     entries: userEntries
-        // })
     }
 
     render() {
         const entries = this.state.entries
-        
+
+        //Line chart data and styling
+        const data = (canvas) => {
+            const ctx = canvas.getContext("2d")
+            const gradient = ctx.createLinearGradient(500, 0, 100, 0);
+            gradient.addColorStop(0, "#0063A3")
+            gradient.addColorStop(1, "#9663A3")
+            return {
+                labels: this.state.dates,
+                datasets: [
+                    {
+                        label: 'Stress Level',
+                        fill: false,
+                        lineTension: 0.5,
+                        backgroundColor: 'rgba(75,192,192,1)',
+                        borderColor: gradient,
+                        pointBackgroundColor: gradient,
+                        borderWidth: 2,
+                        data: this.state.stressLevels
+                    }
+                ]
+            }
+        }
+
         return (
             <div className="logpage">
-                <section className="center">
-                    <h2>Journal Entries</h2>
+                <section className="center fade-in">
+                    <h2>Your Dashboard</h2>
                     <br></br>
                     <label htmlFor="month"> Month: </label>
                     <select name="month" id="month" onChange={this.handleChange} value={this.state.value}>
@@ -134,91 +152,114 @@ class JournalPage extends Component {
                         <option value="December">Dec</option>
                     </select>
                 </section>
-                <div className="wrapper">
-                    <Pie
-                        data={{
-                            labels: ['Excited', 'Happy', 'Bored', 'Sad', 'Nervous', 'Angry'],
-                            datasets: [
-                                {
-                                    label: 'Mood',
-                                    backgroundColor: [
-                                        '#B21F00',
-                                        '#C9DE00',
-                                        '#2FDE00',
-                                        '#00A6B4',
-                                        '#6800B4'
-                                    ],
-                                    hoverBackgroundColor: [
-                                        '#501800',
-                                        '#4B5000',
-                                        '#175000',
-                                        '#003350',
-                                        '#35014F'
-                                    ],
-                                    data: [
-                                        this.state.moods.filter(i => i === "Excited").length,
-                                        this.state.moods.filter(i => i === "Happy").length,
-                                        this.state.moods.filter(i => i === "Bored").length,
-                                        this.state.moods.filter(i => i === "Sad").length,
-                                        this.state.moods.filter(i => i === "Nervous").length,
-                                        this.state.moods.filter(i => i === "Angry").length
-                                    ]
-                                }
-                            ]
-                        }}
-                        options={{
-                            title: {
-                                display: true,
-                                text: 'Mood Tracker',
-                                fontSize: 20
-                            },
-                            legend: {
-                                display: true,
-                                position: 'right'
-                            }
-                        }}
+                <div className="main-container wrapper-chart">
+                    <div className="chart-container-1 fade-in">
+                        <Pie
+                            data={{
+                                labels: ['Excited', 'Happy', 'Bored', 'Sad', 'Nervous', 'Angry'],
+                                datasets: [
+                                    {
+                                        label: 'Mood',
+                                        backgroundColor: [
+                                            '#58A4B0',
+                                            '#8955BD',
+                                            '#5C59A3',
+                                            '#5D84BA',
+                                            '#B36578',
+                                            '#B35696'
+                                        ],
+                                        hoverBackgroundColor: [
+                                            '#3D727A',
+                                            '#513270',
+                                            '#3A3866',
+                                            '#3E597D',
+                                            '#75424F',
+                                            '#693257'
+                                        ],
+                                        data: [
+                                            this.state.moods.filter(i => i === "Excited").length,
+                                            this.state.moods.filter(i => i === "Happy").length,
+                                            this.state.moods.filter(i => i === "Bored").length,
+                                            this.state.moods.filter(i => i === "Sad").length,
+                                            this.state.moods.filter(i => i === "Nervous").length,
+                                            this.state.moods.filter(i => i === "Angry").length
+                                        ]
+                                    }
+                                ]
+                            }}
+                            options={{
+                                title: {
+                                    display: true,
+                                    text: 'Mood Tracker',
+                                    fontSize: 20,
+                                    fontFamily: 'Lexend',
+                                },
+                                legend: {
+                                    display: true,
+                                    position: 'top'
+                                },
+                                responsive: true,
+                                maintainAspectRatio: true,
+                            }}
+                        />
+                    </div>
+                    <div className="chart-container-1 fade-in">
+                        <Line
+                            id="myChart"
+                            data={data}
+                            options={{
+                                title: {
+                                    display: true,
+                                    text: 'Stress Level Tracker',
+                                    fontSize: 20,
+                                    fontFamily: 'Lexend',
+                                },
+                                legend: {
+                                    display: false,
+                                },
+                                responsive: true,
+                                animation: {
+                                    animateScale: true
+                                },
+                                maintainAspectRatio: true,
+                                scales: {
+                                    xAxes: [{
+                                        ticks: { display: true },
+                                        gridLines: {
+                                            display: false,
+                                            drawBorder: false,
+                                        }
+                                    }],
+                                    yAxes: [{
+                                        ticks: {
+                                            display: true,
+                                            beginAtZero: true,
+                                            stepSize: 1,
+                                            max: 10,
+                                        },
+                                        gridLines: {
+                                            display: true,
+                                            drawBorder: false,
+                                        }
+                                    }]
+                                },
+                            }}
+                        />
+                    </div>
+                </div>
 
-                    />
-                </div>
-                <br></br>
-                <div className="wrapper">
-                    <Line
-                        data={{
-                            labels: this.state.dates,
-                            datasets: [
-                                {
-                                    label: 'Stress Level',
-                                    fill: false,
-                                    lineTension: 0.5,
-                                    backgroundColor: 'rgba(75,192,192,1)',
-                                    borderColor: 'rgba(0,0,0,1)',
-                                    borderWidth: 2,
-                                    data: this.state.stressLevels
-                                }
-                            ]
-                        }}
-                        options={{
-                            title: {
-                                display: true,
-                                text: 'Stress Level Tracker',
-                                fontSize: 20
-                            },
-                            legend: {
-                                display: false,
-                                position: 'right'
-                            }
-                        }}
-                    />
-                </div>
+                <section className="center">
+                    <h2>Your Journal Entries</h2>
+                </section>
                 <section>
-                    <ul className="entry-list">
+                    <div className="entry-list">
                         {entries.map(entry =>
                             <JournalEntry
                                 id={entry.id}
                                 {...entry}
                                 onDeleteEntry={this.handleDeleteEntry}
                             />)}
-                    </ul>
+                    </div>
                 </section>
             </div>
         )

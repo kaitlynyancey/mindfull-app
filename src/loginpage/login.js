@@ -83,7 +83,7 @@ class LoginPage extends Component {
 
     render() {
         return (
-            <div className="loginpage">
+            <div className="loginpage fade-in">
                 <section className="center">
                     <h3>For returning users, please login here:</h3>
                 </section>

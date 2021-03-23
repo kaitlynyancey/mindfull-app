@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import JournalContext from '../JournalContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLaugh, faSmile, faMeh, faFrown, faGrimace, faAngry } from '@fortawesome/free-solid-svg-icons';
+
 const { API_BASE_URL } = require('../config')
 
 
@@ -47,8 +50,16 @@ class EntryPage extends Component {
     render() {
         const date = new Date().toLocaleDateString()
 
+        //get font awesome icons
+        const excited = <FontAwesomeIcon icon={faLaugh} />
+        const happy = <FontAwesomeIcon icon={faSmile} />
+        const bored = <FontAwesomeIcon icon={faMeh} />
+        const sad = <FontAwesomeIcon icon={faFrown} />
+        const nervous = <FontAwesomeIcon icon={faGrimace} />
+        const angry = <FontAwesomeIcon icon={faAngry} />
+
         return (
-            <div className="entrypage">
+            <div className="entrypage fade-in">
                 <section className="center">
                     <h3>New Entry for {date}:</h3>
                 </section>
@@ -56,17 +67,17 @@ class EntryPage extends Component {
                     <section>
                         <h3>Current Mood: </h3>
                         <input type="radio" id="excited" name="mood" value="Excited" required />
-                        <label htmlFor="Excited"> Excited</label><br></br>
+                        <label htmlFor="Excited"> - {excited} Excited </label><br></br>
                         <input type="radio" id="happy" name="mood" value="Happy" />
-                        <label htmlFor="Happy"> Happy</label><br></br>
+                        <label htmlFor="Happy"> - {happy} Happy </label><br></br>
                         <input type="radio" id="bored" name="mood" value="Bored" />
-                        <label htmlFor="Bored"> Bored</label><br></br>
+                        <label htmlFor="Bored"> - {bored} Bored </label><br></br>
                         <input type="radio" id="sad" name="mood" value="Sad" />
-                        <label htmlFor="Sad"> Sad</label><br></br>
+                        <label htmlFor="Sad"> - {sad} Sad </label><br></br>
                         <input type="radio" id="nervous" name="mood" value="Nervous" />
-                        <label htmlFor="Nervous"> Nervous</label><br></br>
+                        <label htmlFor="Nervous"> - {nervous} Nervous </label><br></br>
                         <input type="radio" id="angry" name="mood" value="Angry" />
-                        <label htmlFor="angry"> Angry</label>
+                        <label htmlFor="angry"> - {angry} Angry </label>
                     </section>
                     <section>
                         <label htmlFor="stressLevel">Stress Level (1: Lowest, 10: highest): </label><br></br>

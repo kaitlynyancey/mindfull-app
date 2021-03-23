@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import JournalContext from '../JournalContext';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 const { API_BASE_URL } = require('../config')
 
 
@@ -37,11 +39,14 @@ class JournalEntry extends Component {
     }
 
     render() {
+        //get font awesome icons
+        const seedling = <FontAwesomeIcon icon={faSeedling} />
+
         return (
             <JournalContext.Consumer>
                 {(context) => (
-                    <li className="entry" key={this.props.id}>
-                        <h3>{this.props.date_created}</h3>
+                    <div className="entry grow" key={this.props.id}>
+                        <h3>{seedling} {this.props.date_created}</h3>
                         <p><b>Mood: </b> {this.props.mood}</p>
                         <p><b>Stress Level: </b> {this.props.stress_level}</p>
                         <p><b>Gratitudes: </b> {this.props.gratitude1}, {this.props.gratitude2}, {this.props.gratitude3}</p>
@@ -55,7 +60,7 @@ class JournalEntry extends Component {
                             className="delete-button">
                             Delete
                         </button>
-                    </li>
+                    </div>
                 )}
             </JournalContext.Consumer>
         )

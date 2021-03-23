@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
+import logo from '../photos/stars2.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLaugh, faSmile, faMeh, faFrown, faGrimace, faAngry } from '@fortawesome/free-solid-svg-icons';
 
 class AboutPage extends Component {
     render() {
+        //get font awesome icons
+        const excited = <FontAwesomeIcon icon={faLaugh} />
+        const happy = <FontAwesomeIcon icon={faSmile} />
+        const bored = <FontAwesomeIcon icon={faMeh} />
+        const sad = <FontAwesomeIcon icon={faFrown} />
+        const nervous = <FontAwesomeIcon icon={faGrimace} />
+        const angry = <FontAwesomeIcon icon={faAngry} />
         return (
-            <div className="aboutpage wrapper">
+            <div className="aboutpage wrapper fade-in">
                 <section>
                 <h2>mind·ful·ness</h2>
                     <p><small>/ˈmīn(d)f(ə)lnəs/</small></p>
@@ -22,13 +32,12 @@ class AboutPage extends Component {
                     <p>We all experience different moods, and while we can't always control how we are feeling, we can keep track of our moods as a sort of mental health checkup. By monitoring our moods, we can see when things are "off" and take actions as needed. </p>
                     <p>For your journal entries, you will be asked to identify your primary mood for the day. Although there are many ways to break down and categorize our feelings, we will be focusing on the following seven basic moods for our entries:</p>
                     <ol>
-                        <li> Excited</li>
-                        <li> Happy</li>
-                        <li> Calm</li>
-                        <li> Bored</li>
-                        <li> Sad</li>
-                        <li> Nervous</li>
-                        <li> Angry</li>
+                        <li> {excited} Excited</li>
+                        <li> {happy} Happy</li>
+                        <li> {bored} Bored</li>
+                        <li> {sad} Sad</li>
+                        <li> {nervous} Nervous</li>
+                        <li> {angry} Angry</li>
                     </ol>
                 </section>
                 <hr></hr>
@@ -48,6 +57,9 @@ class AboutPage extends Component {
                     <h2>Disclaimer</h2>
                     <p>This app is not intended to treat or prevent any mental health conditions. This should only be used as a supplemental tool and not as a replacement for professional help. </p>
                 </section>
+                <div className="wrapper-logo">
+                    <img src={logo} alt="star cluster logo" className="logo" />
+                </div>
             </div>
         )
     }
