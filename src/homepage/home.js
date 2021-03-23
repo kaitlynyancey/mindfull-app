@@ -51,7 +51,7 @@ class HomePage extends Component {
                         <p>{seedling}<b>Let's Get Started!</b></p>
                     </section>
                     <section>
-                        <button onClick={() => this.props.history.push('/entry')}>Link to Daily Entry</button>
+                        <button onClick={() => this.props.history.push('/entry')}>Link to Entry</button>
                         <button onClick={() => this.props.history.push('/journal')}>Link to Journal</button>
                     </section>
                 </div>
