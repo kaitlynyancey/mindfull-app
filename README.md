@@ -35,7 +35,7 @@ ___
 
 You can create a new account or login to your current account in the login page
 
-![screenshot of app login page](mindfull-screenshots/login-log.png)
+![screenshot of app login page](mindfull-screenshots/login-page.png)
 ___
 ### About Page
 
