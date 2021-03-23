@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# mindFULL App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Description: 
+Start to gain control of your mind and de-stress with mindFULL: a virtual mindfulness journal. Now you don't have to worry about carrying a notebook around with you everywhere you go. With mindFULL, you will always have access to your journal entries on mobile or desktop. 
 
-## Available Scripts
+Users will have a guided journal entry to fill out each day, which will include mood and stress level trackers, a gratitude section, and a free form for any other daily notes. The entries are saved to the user's journal log (if an account is made), which the user can access anytime. Progress trackers will show how a user is doing on their stress levels and overall moods on their journal page. 
 
-In the project directory, you can run:
+### Link to mindFULL Live App: [https://mindfull-app.vercel.app/](https://mindfull-app.vercel.app/)
+### Link to mindFULL API Repository: [https://github.com/kaitlynyancey/mindfull-api](https://github.com/kaitlynyancey/mindfull-api)
+- Documentation of the API endpoints can be found in the README file in the mindFULL API repository. 
+___
+## Screenshots:
 
-### `npm start`
+### Home Page
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This is the landing page of the app. From here you can access your daily entry or your journal log. Also, on any page of the app, you can use the navigation links to visit the home page, about section, entry page, or journal log. You can also login or logout with the links in the top right corner of the page 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![screenshot of app home page](mindfull-screenshots/home-page.png)
+___
+### Entry Page
 
-### `npm test`
+This is the daily entry form. You will be prompted to enter your current mood, stress level, three daily gratitudes, and any notes or thoughts you want to record
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![screenshot of app journal entry page](mindfull-screenshots/entry-form.png)
+___
+### Journal Log
 
-### `npm run build`
+The completed entries will be available to access in the journal log. You can keep track of your progress with the stress level and mood trackers
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![screenshot of app journal trackers](mindfull-screenshots/trackers.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![screenshot of app journal log page](mindfull-screenshots/journal-log.png)
+___
+### Login Page
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You can create a new account or login to your current account in the login page
 
-### `npm run eject`
+![screenshot of app login page](mindfull-screenshots/login-page.png)
+___
+### About Page
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+For more information on mindfulness, you can visit the about page
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![screenshot of app about page](mindfull-screenshots/about-page.png)
+___
+### Technology Used
+* HTML 
+* CSS
+* JavaScript
+* React
+* Node 
+* PostGreSQL
+* Express
