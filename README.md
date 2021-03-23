@@ -15,7 +15,7 @@ ___
 
 This is the landing page of the app. From here you can access your daily entry or your journal log. Also, on any page of the app, you can use the navigation links to visit the home page, about section, entry page, or journal log. You can also login or logout with the links in the top right corner of the page 
 
-![screenshot of app home page](screenshots/HomePage.png)
+![screenshot of app home page](mindfull-screenshots/home-page.png)
 ___
 ### Entry Page
 
