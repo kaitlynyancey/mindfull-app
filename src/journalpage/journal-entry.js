@@ -6,7 +6,6 @@ import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 const { API_BASE_URL } = require('../config')
 
 
-
 class JournalEntry extends Component {
     static contextType = JournalContext
     static defaultProps = {
