@@ -17,7 +17,7 @@ class EntryPage extends Component {
             mood: e.target.mood.value,
             stress_level: e.target.stressLevel.value,
             gratitude1: e.target.gratitude1.value,
-            gratitude2: e.target.gratitude2.value, 
+            gratitude2: e.target.gratitude2.value,
             gratitude3: e.target.gratitude3.value,
             notes: e.target.notes.value,
             userid: this.context.currentUser,
@@ -26,24 +26,24 @@ class EntryPage extends Component {
             method: 'POST',
             body: JSON.stringify(newEntry),
             headers: {
-              'content-type': 'application/json',
-              'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
             }
-          })
+        })
             .then(res => {
-              if (!res.ok) {
-                return res.json().then(error => {
-                  throw error
-                })
-              }
-              return res.json()
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error
+                    })
+                }
+                return res.json()
             })
             .then(response => {
                 this.context.addEntry(response)
                 this.props.history.push('/journal')
             })
             .catch(error => {
-              this.setState({ error })
+                this.setState({ error })
             })
     }
 
@@ -66,18 +66,18 @@ class EntryPage extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <section>
                         <h3>Current Mood: </h3>
-                        <input type="radio" id="excited" name="mood" value="Excited" required />
+                        <input type="radio" id="Excited" name="mood" value="Excited" required />
                         <label htmlFor="Excited"> - {excited} Excited </label><br></br>
-                        <input type="radio" id="happy" name="mood" value="Happy" />
+                        <input type="radio" id="Happy" name="mood" value="Happy" />
                         <label htmlFor="Happy"> - {happy} Happy </label><br></br>
-                        <input type="radio" id="bored" name="mood" value="Bored" />
+                        <input type="radio" id="Bored" name="mood" value="Bored" />
                         <label htmlFor="Bored"> - {bored} Bored </label><br></br>
-                        <input type="radio" id="sad" name="mood" value="Sad" />
+                        <input type="radio" id="Sad" name="mood" value="Sad" />
                         <label htmlFor="Sad"> - {sad} Sad </label><br></br>
-                        <input type="radio" id="nervous" name="mood" value="Nervous" />
+                        <input type="radio" id="Nervous" name="mood" value="Nervous" />
                         <label htmlFor="Nervous"> - {nervous} Nervous </label><br></br>
-                        <input type="radio" id="angry" name="mood" value="Angry" />
-                        <label htmlFor="angry"> - {angry} Angry </label>
+                        <input type="radio" id="Angry" name="mood" value="Angry" />
+                        <label htmlFor="Angry"> - {angry} Angry </label>
                     </section>
                     <section>
                         <label htmlFor="stressLevel">Stress Level (1: Lowest, 10: highest): </label><br></br>
@@ -111,8 +111,10 @@ class EntryPage extends Component {
                         <label htmlFor="notes">Write down your thoughts, feelings, revelations, things you did today, future plans, dreams, whatever you want!</label><br />
                         <textarea name="notes" id="notes" rows="10" required ></textarea>
                     </section>
-                    <button type="submit">Submit</button>
-                    <button type="reset">Reset</button>
+                    <section className="center">
+                        <button type="submit">Submit</button>
+                        <button type="reset">Reset</button>
+                    </section>
                 </form>
             </div>
         )

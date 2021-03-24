@@ -100,18 +100,18 @@ class EditPage extends Component {
           <section>
             <h3>Current Mood: </h3>
             <p><small>(Original Entry: {this.state.entry.mood})</small></p>
-            <input type="radio" id="excited" name="mood" value="Excited" selected={this.state.entry.mood === "Excited"} required />
+            <input type="radio" id="Excited" name="mood" value="Excited" selected={this.state.entry.mood === "Excited"} required />
             <label htmlFor="Excited"> Excited</label><br></br>
-            <input type="radio" id="happy" name="mood" value="Happy" selected={this.state.entry.mood === "Happy"} />
+            <input type="radio" id="Happy" name="mood" value="Happy" selected={this.state.entry.mood === "Happy"} />
             <label htmlFor="Happy"> Happy</label><br></br>
-            <input type="radio" id="bored" name="mood" value="Bored" selected={this.state.entry.mood === "Bored"} />
+            <input type="radio" id="Bored" name="mood" value="Bored" selected={this.state.entry.mood === "Bored"} />
             <label htmlFor="Bored"> Bored</label><br></br>
-            <input type="radio" id="sad" name="mood" value="Sad" selected={this.state.entry.mood === "Sad"} />
+            <input type="radio" id="Sad" name="mood" value="Sad" selected={this.state.entry.mood === "Sad"} />
             <label htmlFor="Sad"> Sad</label><br></br>
-            <input type="radio" id="nervous" name="mood" value="Nervous" selected={this.state.entry.mood === "Nervous"} />
+            <input type="radio" id="Nervous" name="mood" value="Nervous" selected={this.state.entry.mood === "Nervous"} />
             <label htmlFor="Nervous"> Nervous</label><br></br>
-            <input type="radio" id="angry" name="mood" value="Angry" selected={this.state.entry.mood === "Angry"} />
-            <label htmlFor="angry"> Angry</label>
+            <input type="radio" id="Angry" name="mood" value="Angry" selected={this.state.entry.mood === "Angry"} />
+            <label htmlFor="Angry"> Angry</label>
           </section>
           <section>
             <label htmlFor="stressLevel">Stress Level (1: Lowest, 10: highest): </label><br></br>
@@ -146,8 +146,10 @@ class EditPage extends Component {
             <label htmlFor="notes">Write down your thoughts, feelings, revelations, things you did today, future plans, dreams, whatever you want!</label><br />
             <textarea name="notes" id="notes" rows="6" cols="50" defaultValue={this.state.entry.notes} required ></textarea>
           </section>
-          <button type="submit">Submit</button>
-          <button type="reset">Reset</button>
+          <section className="center">
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+          </section>
         </form>
       </div>
     )

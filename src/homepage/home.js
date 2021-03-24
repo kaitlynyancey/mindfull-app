@@ -51,8 +51,8 @@ class HomePage extends Component {
                         <p>{seedling}<b>Let's Get Started!</b></p>
                         <ul>
                             <li><b>Step 1 (optional):</b> Create a new user account by clicking the "Login | Signup" button in the top right corner if you want to save your personal entries. Otherwise, feel free to play around in demo mode to get a feel for the app. You can access all features of the app in demo mode!</li>
-                            <li><b>Step 2:</b> Click on the "Link to Entry" button to access the daily journal entry form. Fill out all the fields and hit "Submit" to save to your journal.</li>
-                            <li><b>Step 3:</b> Access your journal at anytime to view your progress and re-visit previously saved journal entries.</li>
+                            <li><b>Step 2:</b> Click on the "Link to Entry" button to access the daily journal entry form. Fill out all the fields and hit "Submit" to save the entry to your journal.</li>
+                            <li><b>Step 3:</b> Access your journal at anytime to view your progress and re-visit previously saved journal entries. Click on "Link to Journal" below or the "Journal" link in the navigation bar.</li>
                             <li><b>Step 4:</b> Be mindFULL!</li>
                         </ul>
 

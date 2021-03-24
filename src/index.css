@@ -82,7 +82,8 @@ button{
   background-color: rgba(150, 99, 163);
   border: 1pt solid black;
   color: white;
-  padding: 10px 28px;
+  width: 160px;
+  height: 50px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -98,6 +99,8 @@ button{
 .link {
   background: none;
   border: none;
+  width: auto;
+  height: auto;
   margin: 0;
   padding: 0;
   color: white;
