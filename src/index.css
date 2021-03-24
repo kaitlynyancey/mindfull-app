@@ -77,7 +77,6 @@ hr{
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0),#1c3e5c, rgba(0, 0, 0, 0));
 }
 
-
 button{
   background-color: rgba(150, 99, 163);
   border: 1pt solid black;
@@ -256,5 +255,8 @@ img.logo{
   }
   .intro{
     padding: 20px 40px 0px 40px;
+  }
+  .loginpage form{
+    width: 40%;
   }
 }

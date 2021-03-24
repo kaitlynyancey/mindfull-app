@@ -93,7 +93,7 @@ class EditPage extends Component {
   render() {
     return (
       <div className="entrypage">
-        <section>
+        <section className="center">
           <h3>Edit Entry for {this.state.entry.date_created}:</h3>
         </section>
         <form onSubmit={this.handleSubmit}>

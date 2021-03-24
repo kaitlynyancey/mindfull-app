@@ -17,9 +17,9 @@ class App extends Component {
     this.state = {
       entries: [],
       users: [],
-      currentUser: '',
+      currentUser: 1,
       error: null,
-      currentUsername: ''
+      currentUsername: 'You are currently in demo mode!'
     }
   }
 
@@ -154,10 +154,14 @@ class App extends Component {
             <header>
               <div className="right">
                 <p>Hello, {this.state.currentUsername}</p>
-                <Link to='/login'>
-                  Login | Signup
-                </Link><span> | </span>
-                <button className="link" type="button" onClick={() => this.handleLogout()}>Logout</button>
+                {this.state.currentUser === 1 &&
+                  <Link to='/login'>
+                    Login | Signup
+                  </Link>
+                }
+                {this.state.currentUser !== 1 &&
+                  <button className="link" type="button" onClick={() => this.handleLogout()}>Logout</button>
+                }
               </div>
               <section className="center">
                 <h1>mindFULL</h1>
