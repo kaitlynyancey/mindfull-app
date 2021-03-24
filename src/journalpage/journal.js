@@ -107,33 +107,10 @@ class JournalPage extends Component {
     render() {
         const entries = this.state.entries
 
-        //Line chart data and styling
-        const data = (canvas) => {
-            const ctx = canvas.getContext("2d")
-            const gradient = ctx.createLinearGradient(500, 0, 100, 0);
-            gradient.addColorStop(0, "#0063A3")
-            gradient.addColorStop(1, "#9663A3")
-            return {
-                labels: this.state.dates,
-                datasets: [
-                    {
-                        label: 'Stress Level',
-                        fill: false,
-                        lineTension: 0.5,
-                        backgroundColor: 'rgba(75,192,192,1)',
-                        borderColor: gradient,
-                        pointBackgroundColor: gradient,
-                        borderWidth: 2,
-                        data: this.state.stressLevels
-                    }
-                ]
-            }
-        }
-
         return (
             <div className="logpage">
                 <section className="center fade-in">
-                    <h2>Your Dashboard</h2>
+                    <h2>Your Journal Dashboard</h2>
                     <br></br>
                     <label htmlFor="month"> Month: </label>
                     <select name="month" id="month" onChange={this.handleChange} value={this.state.value}>
@@ -206,7 +183,21 @@ class JournalPage extends Component {
                     <div className="chart-container-1 fade-in">
                         <Line
                             id="myChart"
-                            data={data}
+                            data={{
+                                    labels: this.state.dates,
+                                    datasets: [
+                                        {
+                                            label: 'Stress Level',
+                                            fill: false,
+                                            lineTension: 0.5,
+                                            backgroundColor: 'rgba(75,192,192,1)',
+                                            borderColor: 'rgb(94, 64, 102)',
+                                            pointBackgroundColor: 'rgb(94, 64, 102)',
+                                            borderWidth: 2,
+                                            data: this.state.stressLevels
+                                        }
+                                    ]
+                                }}
                             options={{
                                 title: {
                                     display: true,
@@ -245,6 +236,9 @@ class JournalPage extends Component {
                                 },
                             }}
                         />
+                        <script>
+
+                        </script>
                     </div>
                 </div>
 

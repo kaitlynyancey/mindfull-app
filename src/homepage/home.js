@@ -49,8 +49,15 @@ class HomePage extends Component {
                         <p>mindFULL is here to help you take a break, reflect on your day, and re-evaluate what's truly important in your life. With guided daily journal entries, you can get racing thoughts out of your head and increase awareness of the present moment. Mindfulness is a skill you can develop over time, and by spending just a few minutes every day logging your journal entries, you will become a mindfulness master in no time. </p>
                         <br></br>
                         <p>{seedling}<b>Let's Get Started!</b></p>
+                        <ul>
+                            <li><b>Step 1 (optional):</b> Create a new user account by clicking the "Login | Signup" button in the top right corner if you want to save your personal entries. Otherwise, feel free to play around in demo mode to get a feel for the app. You can access all features of the app in demo mode!</li>
+                            <li><b>Step 2:</b> Click on the "Link to Entry" button to access the daily journal entry form. Fill out all the fields and hit "Submit" to save to your journal.</li>
+                            <li><b>Step 3:</b> Access your journal at anytime to view your progress and re-visit previously saved journal entries.</li>
+                            <li><b>Step 4:</b> Be mindFULL!</li>
+                        </ul>
+
                     </section>
-                    <section>
+                    <section className="center">
                         <button onClick={() => this.props.history.push('/entry')}>Link to Entry</button>
                         <button onClick={() => this.props.history.push('/journal')}>Link to Journal</button>
                     </section>
