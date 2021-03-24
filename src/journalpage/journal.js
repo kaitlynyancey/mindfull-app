@@ -191,8 +191,8 @@ class JournalPage extends Component {
                                             fill: false,
                                             lineTension: 0.5,
                                             backgroundColor: 'rgba(75,192,192,1)',
-                                            borderColor: 'rgb(94, 64, 102)',
-                                            pointBackgroundColor: 'rgb(94, 64, 102)',
+                                            borderColor: 'rgb(150, 99, 163)',
+                                            pointBackgroundColor: 'rgb(150, 99, 163)',
                                             borderWidth: 2,
                                             data: this.state.stressLevels
                                         }

@@ -128,7 +128,7 @@ class App extends Component {
   handleLogout = () => {
     this.setState({
       currentUser: 1,
-      currentUsername: 'Test User',
+      currentUsername: 'You are currently in demo mode!',
     })
   }
 
